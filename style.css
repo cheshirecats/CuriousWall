@@ -1,186 +1,186 @@
 /* RESET & BACKGROUND */
 * { margin:0; padding:0; border:0; vertical-align: baseline;
-	box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box }
+  box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box }
 html { background-image:url(bg.png); overflow-y:scroll }
 
 /* FONT & COLOR */
 body, input, textarea { 
-	font-size: 15px; color:#211922; line-height:1.5;
-	word-wrap:break-word;
+  font-size: 15px; color:#211922; line-height:1.5;
+  word-wrap:break-word;
 }
 body, input, textarea {
-	font-family:Calibri,"Lucida Grande","Lucida Sans Unicode","Lucida Sans","DejaVu Sans","Bitstream Vera Sans","Liberation Sans",Verdana, '宋体', sans-serif;
+  font-family:Calibri,"Lucida Grande","Lucida Sans Unicode","Lucida Sans","DejaVu Sans","Bitstream Vera Sans","Liberation Sans",Verdana, '宋体', sans-serif;
 }
 #topic_title, #left_title, h1, h2, h3, h4, h5, h6 { 
-	font-family:"Hoefler Text",Cambria,Utopia,"Liberation Serif","Nimbus Roman No9 L",Times,"Times New Roman", '宋体', sans-serif; 
+  font-family:"Hoefler Text",Cambria,Utopia,"Liberation Serif","Nimbus Roman No9 L",Times,"Times New Roman", '宋体', sans-serif; 
 }
 
 /* PAGE */
 #container {
-	position:relative;
-	margin: 20px auto;
-	padding: 0 20px;
-	min-width: 980px;
-	max-width: 1150px;
+  position:relative;
+  margin: 20px auto;
+  padding: 0 20px;
+  min-width: 980px;
+  max-width: 1150px;
 }
 #left, #mid {
-	display:none;
+  display:none;
 }
 #left_container {
-	float: right;
-	width: 38%;
+  float: right;
+  width: 38%;
 }
 #mid_container {
-	padding-right:20px;
-	margin-right: 38%;
-	margin-left:0px;
+  padding-right:20px;
+  margin-right: 38%;
+  margin-left:0px;
 }
 
 /* BASICS */
 .box {
-	background: #fff;
-	box-shadow: 0 1px 3px rgba(34,25,25,0.4);
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(34,25,25,0.4);
 }
 .wall {
-	padding-top:18px;
-	padding-bottom:18px;
-	padding-left:37px;
-	padding-right:37px;
+  padding-top:18px;
+  padding-bottom:18px;
+  padding-left:37px;
+  padding-right:37px;
 }
 
 /* MID */
 #text_container {
-	margin-bottom: 7px;
+  margin-bottom: 7px;
 }
 #post_container {
-	position: relative;
-	padding-top:13px;
-	padding-bottom:8px;
+  position: relative;
+  padding-top:13px;
+  padding-bottom:8px;
 }
 #user_panel {
-	margin-bottom:8px; 
+  margin-bottom:8px; 
 }
 #left_title, #nav .topic p, #topic_title, #topic_text, #text_container .post {
-	border-bottom: 1px solid #bbb;
-	position: relative;
-	padding-top:11px;
+  border-bottom: 1px solid #bbb;
+  position: relative;
+  padding-top:11px;
 }
 #nav .topic {
-	position: relative;
+  position: relative;
 }
 #nav .topic p, #topic_text, #text_container .post {
-	font-size: 15px;
-	line-height:1.8;
-	padding-bottom:7px;
+  font-size: 15px;
+  line-height:1.8;
+  padding-bottom:7px;
 }
 #left_title, #topic_title {
-	font-size:17px;
-	font-weight:bold;
-	line-height:1.7;
-	padding-bottom:9px;
+  font-size:17px;
+  font-weight:bold;
+  line-height:1.7;
+  padding-bottom:9px;
 }
 #nav .last {
-	margin-bottom:16px;
+  margin-bottom:16px;
 }
 #nav .topic p{
-	cursor: pointer;
+  cursor: pointer;
 }
 #post_title {
-	height: 38px;
+  height: 38px;
 }
 .tcore {
-	font-size: 13px;
-	line-height: 34px;
-	color:#999;
-	position:absolute;
-	top:6px;
-	right:-36px;
-	width:34px;
-	overflow:hidden;
-	text-align:center;
-	cursor:default;
+  font-size: 13px;
+  line-height: 34px;
+  color:#999;
+  position:absolute;
+  top:6px;
+  right:-36px;
+  width:34px;
+  overflow:hidden;
+  text-align:center;
+  cursor:default;
 }
 .tup {
-	top:-20px;
-	bottom:auto;
-	color:#999;
+  top:-20px;
+  bottom:auto;
+  color:#999;
 }
 .tdown {
-	top:auto;
-	bottom:-20px;
-	color:#999;
+  top:auto;
+  bottom:-20px;
+  color:#999;
 }
 .trep {
 }
 .same {
-	color:#000;
+  color:#000;
 }
 .admin {
-	color:#e00;
+  color:#e00;
 }
 .tmark {
-	width: 6px;
-	height: 6px;
-	background:#555;
-	position:absolute;
-	top:21px;
-	left:-21px;
+  width: 6px;
+  height: 6px;
+  background:#555;
+  position:absolute;
+  top:21px;
+  left:-21px;
 }
 
 /* ETC */
 i {
-	color:#555;
+  color:#555;
 }
 .hover, .button {
-	cursor:pointer;
+  cursor:pointer;
 }
 input {
-	outline: none;
+  outline: none;
 }
 input::-moz-focus-inner {
   border: 0;
 }
 .button {
-	background:transparent; 
-	position:relative;
-	z-index:999;
+  background:transparent; 
+  position:relative;
+  z-index:999;
 }
 #login_form input[type="text"], #login_form input[type="password"] {
-	border: 0px;
-	box-shadow: inset 0px 1px 3px rgba(34,25,25,0.4);
+  border: 0px;
+  box-shadow: inset 0px 1px 3px rgba(34,25,25,0.4);
 }
 input[type="text"], input[type="password"], textarea {
-	padding: 5pt 5pt;
-	background: #fff;
-	border-radius: 5px;
-	border: 1px solid #bbb;
-	box-shadow: inset 0px 1px 3px rgba(34,25,25,0.1);
+  padding: 5pt 5pt;
+  background: #fff;
+  border-radius: 5px;
+  border: 1px solid #bbb;
+  box-shadow: inset 0px 1px 3px rgba(34,25,25,0.1);
 }
 textarea {
-	height: 260px;
-	width: 100%;
-	outline: none;
-	resize:none;
-	overflow:auto;
+  height: 260px;
+  width: 100%;
+  outline: none;
+  resize:none;
+  overflow:auto;
 }
 #login_form input {
-	font-size: 20px;
-	padding: 5pt 5pt;
+  font-size: 20px;
+  padding: 5pt 5pt;
 }
 #login_form #login_button {
-	font-size: 20px;
-	padding: 5pt 5pt;
+  font-size: 20px;
+  padding: 5pt 5pt;
 }
 #login_form input[type="text"], input[type="password"]{
-	margin: 0 2pt;
-	width: 200px;
+  margin: 0 2pt;
+  width: 200px;
 }
 
 a, a:visited { color:#211922; text-decoration:none; outline:none;}
 a img{ border:none; }
 a:hover, .current {
-	color:#e31922;
-	text-shadow: 0 0 1px rgba(255,0,0,0.25);
+  color:#e31922;
+  text-shadow: 0 0 1px rgba(255,0,0,0.25);
 }
 
 .clearfix:before,
