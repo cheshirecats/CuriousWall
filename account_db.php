@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 require_once 'connect.php';
 
 $_POST['user'] = trim($_POST['user']);
@@ -43,7 +43,7 @@ else if ($_POST['method'] == 'register')
 	}
 	
 	$query = $db->prepare("INSERT INTO users(user_name,user_pass) VALUES(?,UNHEX(?))");
-	$query->execute(array($_POST['user'], hash('ripemd160', $_POST['pass'].$pass_salt)));
+	$query->execute(array($_POST['user'], hash('sha256', $_POST['pass'].$pass_salt)));
 	if ($query->rowCount() < 1)
 	{
 		die('用户名已被使用。');
