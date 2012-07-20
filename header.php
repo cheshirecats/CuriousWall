@@ -15,4 +15,4 @@
   <link rel="stylesheet" type="text/css" href="font-awesome.css" />
 </head>
 <body>
-<div id="container" class="clearfix"> q
+<div id="container" class="clearfix">
