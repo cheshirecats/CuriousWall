@@ -1,4 +1,1 @@
-
-数据库的用户名和密码在 connect.php 里面
-
-建立后导入 test.sql 即可运行
+Import test.sql to MySQL. Then edit connect.php
