@@ -60,7 +60,7 @@ if (typeof $IS_INDEX_PHP != 'undefined')
     $(".topic[name=" + tttt + "] p").addClass('current');
   }
   function goTopic(tttt, $rep) {
-    $('#prepare_post_button').contents().filter(function(){return this.nodeType == 3}).replaceWith('&nbsp;新帖');
+    $('#prepare_post_button').contents().filter(function(){return this.nodeType == 3}).replaceWith('&nbsp;Create');
     var $topic_change = false;
     if ($current_topic != tttt)
     {
@@ -244,7 +244,7 @@ if (typeof $IS_INDEX_PHP != 'undefined')
     clearPost();
     if ($current_topic >= 0)
     {
-      $('#prepare_post_button').contents().filter(function(){return this.nodeType == 3}).replaceWith('&nbsp;取消');
+      $('#prepare_post_button').contents().filter(function(){return this.nodeType == 3}).replaceWith('&nbsp;Cancel');
       $current_topic_bak = $current_topic;
       $(".topic[name=" + $current_topic + "] p").removeClass('current');
       $current_topic = -1;
@@ -253,7 +253,7 @@ if (typeof $IS_INDEX_PHP != 'undefined')
     }
     else 
     {
-      $('#prepare_post_button').contents().filter(function(){return this.nodeType == 3}).replaceWith('&nbsp;新帖');
+      $('#prepare_post_button').contents().filter(function(){return this.nodeType == 3}).replaceWith('&nbsp;Create');
       $current_topic = $current_topic_bak;
       $(".topic[name=" + $current_topic + "] p").addClass('current');
       $('#post_title').hide();
@@ -267,13 +267,13 @@ if (typeof $IS_INDEX_PHP != 'undefined')
     e.preventDefault();
     if (post_working) return false;
     post_working = true;
-    $('#post_msg').html('正在发送。');
+    $('#post_msg').html('Posting...');
     $.post('post_db.php', {title:$('#post_title').val(), text:$('#post_text').val(), method:"new", topic:$current_topic}, function(msg)
     {
       if(msg.substr(0, 7) == 'SUCCESS')
       {
         clearPost();
-        $('#post_msg').html('发送成功。');
+        $('#post_msg').html('Success.');
         if ($current_topic < 0)
         {
           refresh(msg.substr(7));
@@ -329,7 +329,7 @@ if (typeof $IS_ACCOUNT_PHP != 'undefined')
     {
       $.post('account_db.php', {method:'login', user:$('#login_user').val(), pass:$('#login_pass').val()}, function(msg)
       {
-        if (msg == "登陆成功。")
+        if (msg == "Success.")
         {
           window.location.href = "index.php";
         }
@@ -341,7 +341,7 @@ if (typeof $IS_ACCOUNT_PHP != 'undefined')
     {
       $.post('account_db.php', {method:'register', user:$('#login_user').val(), pass:$('#login_pass').val()}, function(msg)
       {
-        if (msg == "登陆成功。")
+        if (msg == "Success.")
         {
           window.location.href = "index.php";
         }
