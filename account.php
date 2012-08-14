@@ -4,18 +4,18 @@
   require_once 'header.php';
 ?>
 <div style="width: 520px; margin: 100px auto; text-shadow: 0 0 1px rgba(0,0,0,0.1);">
-  <div style="margin: 40px 1px; font-size:20px;">欢迎来到简单论坛。</div>
+  <div style="margin: 40px 1px; font-size:20px;">A Simple Forum</div>
   <div id="login_form">
-    <input type="text" id="login_user" placeholder="用户名" />
-    <input type="password" id="login_pass" placeholder="密码" />
+    <input type="text" id="login_user" placeholder="Username" />
+    <input type="password" id="login_pass" placeholder="Password" />
     <?php 
     if ($_GET["a"] == 'login')
     {
-      echo '<span class="button" id="login_button">[登陆]</span>';
+      echo '<span class="button" id="login_button">[Sign in]</span>';
     } 
     else if ($_GET["a"] == 'register')
     {
-      echo '<span class="button" id="login_button">[注册]</span>';
+      echo '<span class="button" id="login_button">[Sign up]</span>';
     }
     ?>
   </div>
