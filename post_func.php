@@ -7,7 +7,7 @@ function post_get($db, $xtopic, $xbegin)
     $query = $db->prepare("SELECT topic_title, topic_text, topic_replies, topic_by, user_name FROM topics LEFT JOIN users ON topic_by = user_id WHERE topic_id = ?");
     $query->execute(array($xtopic));
     if ($query->rowCount() < 1) {
-      echo '<div id="topic_title" name=0 topic_replies=0 begin=0 end=0 limit=0>主题不存在</div>';
+      echo '<div id="topic_title" name=0 topic_replies=0 begin=0 end=0 limit=0>Unknown Topic</div>';
       die();
     }
     
@@ -58,12 +58,12 @@ function post_get($db, $xtopic, $xbegin)
     $cnt = $query->rowCount();
     if ($cnt < 1)
     {
-      echo '<div id="left_title" begin=0 end=0 limit=0>主题列表</div>';
-      echo '<div class="topic"><p>无主题</p></div>';
+      echo '<div id="left_title" begin=0 end=0 limit=0>Topics</div>';
+      echo '<div class="topic"><p>None at the moment.</p></div>';
       die();
     }
     $end = $begin + $cnt - 1;
-    echo '<div id="left_title" begin='.($begin+1).' end='.($end+1).' limit='.$limit.'>主题列表</div>';
+    echo '<div id="left_title" begin='.($begin+1).' end='.($end+1).' limit='.$limit.'>Topics</div>';
     $i = $begin;
     $first_topic = 0;
     while($row = $query->fetch(PDO::FETCH_ASSOC))
