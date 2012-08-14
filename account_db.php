@@ -8,7 +8,7 @@ $pass_salt = 'just_for_demo';
 
 if ($_POST['method'] == 'login')
 {
-  if(!$_POST['user'] || !$_POST['pass']) die('请填写用户名及密码。');
+  if(!$_POST['user'] || !$_POST['pass']) die('Fill in username and password.');
   
   $query = $db->prepare("SELECT user_id, user_name FROM users WHERE ((user_name LIKE ?) AND (user_pass = UNHEX(?)))");
   $query->execute(array($_POST['user'], hash('sha256', $_POST['pass'].$pass_salt)));
@@ -16,43 +16,43 @@ if ($_POST['method'] == 'login')
 
   if(!$row['user_name'])
   {
-    die('用户名或密码错误。');
+    die('Incorrect username or password.');
   }
   
   $_SESSION['user_name']=$row['user_name'];
   $_SESSION['user_id']=$row['user_id'];
-  die('登陆成功。');
+  die('Success.');
 }
 else if ($_POST['method'] == 'register') 
 {
-  if(!$_POST['user'] || !$_POST['pass']) die('请填写用户名及密码。');
-  if (!preg_match("/^[a-zA-Z0-9]+$/u",$_POST['user']))
+  if(!$_POST['user'] || !$_POST['pass']) die('Fill in username and password.');
+  if (!preg_match("/^[a-zA-Z0-9_]+$/u",$_POST['user']))
   {
-    die('用户名只能包括英文字母、数字。'); 
+    die('Username can only contain a-z A-Z 0-9 and underscore.'); 
   }
-  if (strlen($_POST['user']) >= 8)
+  if (strlen($_POST['user']) >= 16)
   {
-    die('用户名长度不能超过8字。');
+    die('Username shall be less than 16 characters.');
   }
   
   $query = $db->prepare("SELECT user_id FROM users WHERE user_name LIKE ?");
   $query->execute(array($_POST['user']));
   if ($query->rowCount() > 0)
   {
-    die('用户名已被使用。');
+    die('Username already occupied.');
   }
   
   $query = $db->prepare("INSERT INTO users(user_name,user_pass) VALUES(?,UNHEX(?))");
   $query->execute(array($_POST['user'], hash('sha256', $_POST['pass'].$pass_salt)));
   if ($query->rowCount() < 1)
   {
-    die('用户名已被使用。');
+    die('Username already occupied.');
   }
 
   $_SESSION['user_id'] = $db->lastInsertId();
   $_SESSION['user_name'] = $_POST['user'];
   
-  die('注册成功。<a href = "index.php">[点击此处进入首页]</a>');
+  die('Success. <a href = "index.php">[Click here for frontpage]</a>');
 }
 else
 {
