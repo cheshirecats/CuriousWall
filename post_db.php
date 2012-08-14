@@ -13,28 +13,28 @@ if ($_POST['method'] == 'get')
 }
 else if (($_POST['method'] == 'new') && is_numeric($_POST['topic']))
 {
-  if (!isset($_SESSION['user_id'])) die('请先登陆。');
+  if (!isset($_SESSION['user_id'])) die('Sign in first.');
   if ($_POST['topic'] < 0)
   {
     if (!$_POST['title'])
     {
-      die('请填写标题。');
+      die('Fill in title.');
     }
     $title_len = mb_strlen($_POST['title'],'UTF8');
     if (($title_len < 1) || ($title_len > 200))
     {
-      die('标题最短1字，最长200字。现为'.$title_len .'字。');
+      die('Title length shall be in [1, 200]. Now it is '.$title_len .'.');
     }
     $_POST['title'] = nl2br(htmlspecialchars($_POST['title']));
   }
   if (!$_POST['text'])
   {
-    die('请填写内容。');
+    die('Fill in content.');
   }
   $text_len = mb_strlen($_POST['text'],'UTF8');
   if (($text_len < 1) || ($text_len > 5000))
   {
-    die('内容最短1字，最长5000字。现为'.$text_len .'字。');
+    die('Content length shall be in [1, 5000]. Now it is '.$text_len .'.');
   }
   $_POST['text'] = nl2br(htmlspecialchars($_POST['text']));
   $_POST['text'] = str_replace("  ", "&nbsp;&nbsp;", $_POST['text']);
@@ -45,7 +45,7 @@ else if (($_POST['method'] == 'new') && is_numeric($_POST['topic']))
     $query->execute(array($_POST['title'], $_POST['text'], $_SESSION['user_id']));
     if($query->rowCount() < 1)
     {
-      die('无法添加主题。');
+      die('Cannot create topic.');
     }
     $_POST['topic'] = $db->lastInsertId();
   }
@@ -55,7 +55,7 @@ else if (($_POST['method'] == 'new') && is_numeric($_POST['topic']))
     $query->execute(array($_POST['text'], $_SESSION['user_id'], $_POST['topic']));
     if($query->rowCount() < 1)
     {
-      die('无法添加回复。');
+      die('Cannot reply.');
     }
     $query = $db->prepare("UPDATE topics SET topic_replies = topic_replies + 1 WHERE topic_id = ?");
     $query->execute(array($_POST['topic']));
