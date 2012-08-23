@@ -25,14 +25,14 @@ function post_get($db, $xtopic, $xbegin)
       $begin = 0;
     }
 
-    $query = $db->prepare("SELECT post_text, post_id, post_by FROM posts WHERE post_topic = ? ORDER BY post_date ASC LIMIT $begin, $limit");
+    $query = $db->prepare(" SELECT p.post_text, p.post_id, p.post_by, u.user_name, u.user_id FROM posts AS p INNER JOIN users AS u ON p.post_by = u.user_id WHERE post_topic = ? ORDER BY post_date ASC LIMIT $begin, $limit");
     $query->execute(array($xtopic));
     
     $end = $query->rowCount() + $begin - 1;
     
     echo '<div id="topic_title" name='.$xtopic.' topic_replies='.$topic['topic_replies']
       .' begin='.($begin+1).' end='.($end+1).' limit='.$limit.'>'.$topic['topic_title'].'</div>';
-    echo '<div id="topic_text">'.$topic['topic_text'].'</div>';
+    echo '<div id="topic_text">' . "<span class='username' style='font-weight: bold;'>" . $topic['user_name'] . ":</span> " . $topic['topic_text'].'</div>';
 
     $i = $begin;
     while($row = $query->fetch(PDO::FETCH_ASSOC))
@@ -45,6 +45,7 @@ function post_get($db, $xtopic, $xbegin)
       if (($i == $end) && ($i != $topic['topic_replies'] - 1)) {
         echo '<span class="tcore tdown hover">▼</span>';
       }
+      echo "<span class='username' style='font-weight: bold;'>" . $row['user_name'] . ":</span> ";
       echo $row['post_text'].'</div>';
       $i++;
     }
