@@ -127,8 +127,10 @@ if (typeof $IS_INDEX_PHP != 'undefined')
       
       $('#mid').show();
       document.title = $('#topic_title').text();
-      if (($('#isstickyhiddenfield').val()) == '0') { $('input#ystick').removeAttr('checked');$('#nostick').attr('checked','checked');} else { $('#ystick').attr('checked','checked');$('input#nostick').removeAttr('checked');} 
-      if (($('#islockedyhiddenfield').val()) == '0') { $('input#ylock').removeAttr('checked');$('#nolock').attr('checked','checked');} else { $('#ylock').attr('checked','checked');$('input#nolock').removeAttr('checked');} 
+ /*     if (($('#isstickyhiddenfield').val()) == '0') { $('input#ystick').removeAttr('checked');$('#nostick').attr('checked','checked');} else { $('#ystick').attr('checked','checked');$('input#nostick').removeAttr('checked');} 
+      if (($('#islockedyhiddenfield').val()) == '0') { $('input#ylock').removeAttr('checked');$('#nolock').attr('checked','checked');} else { $('#ylock').attr('checked','checked');$('input#nolock').removeAttr('checked');} */
+      $('input#ystick').removeAttr('checked');$('input#nostick').removeAttr('checked');$('input#ylock').removeAttr('checked');$('input#nolock').removeAttr('checked');
+
       updateCurrTopic($('#topic_title').attr('name'));
       
       var $numposts = $('#topic_title').attr('topic_replies');
