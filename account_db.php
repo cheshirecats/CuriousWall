@@ -10,7 +10,7 @@ if ($_POST['method'] == 'login')
 {
   if(!$_POST['user'] || !$_POST['pass']) die('Fill in username and password.');
   
-  $query = $db->prepare("SELECT user_id, user_name FROM users WHERE ((user_name LIKE ?) AND (user_pass = UNHEX(?)))");
+  $query = $db->prepare("SELECT user_id, user_name, permissions FROM users WHERE ((user_name LIKE ?) AND (user_pass = UNHEX(?)))");
   $query->execute(array($_POST['user'], hash('sha256', $_POST['pass'].$pass_salt)));
   $row = $query->fetch(PDO::FETCH_ASSOC);
 
@@ -21,6 +21,7 @@ if ($_POST['method'] == 'login')
   
   $_SESSION['user_name']=$row['user_name'];
   $_SESSION['user_id']=$row['user_id'];
+  $_SESSION['permissions']=$row['permissions'];
   die('Success.');
 }
 else if ($_POST['method'] == 'register') 
