@@ -52,6 +52,8 @@ CREATE TABLE IF NOT EXISTS `topics` (
   `topic_by` int(10) unsigned NOT NULL,
   `topic_score` double NOT NULL,
   `topic_replies` int(10) unsigned NOT NULL,
+  `sticky` tinyint(1) NOT NULL DEFAULT '0',
+  `locked` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`topic_id`),
   KEY `topic_by` (`topic_by`),
   KEY `topic_date` (`topic_date`),
@@ -69,6 +71,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `user_pass` binary(32) NOT NULL,
+  `permissions` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 

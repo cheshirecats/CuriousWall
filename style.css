@@ -53,5 +53,17 @@ a, a:visited                            { color: #211922; text-decoration: none;
 a img                                   { border: none }
 a:hover, .current                       { color: #e31922; text-shadow: 0 0 1px rgba(255,0,0,0.25); }
 .clearfix:before, .clearfix:after       { content: ""; display: table; }
-.clearfix:after                         { clear: both }
-.clearfix                               { zoom: 1 }
+.clearfix:after                         { clear: both; }
+.clearfix                               { zoom: 1; }
+
+.stuck                                  { line-height: 34px; font-size: 13px; color: #555; position: absolute; top: 6px; right: 0; background: #fff; z-index: 2;}
+.topic:hover .stuck	{ display: none; }
+.MathJax_SVG, .MathJax_SVG_Display	{ display: inline !important; text-align: left !important;}
+
+.radioswitch 	{display: inline;}
+.radioswitch input[type=radio] 	{display:none;} /**/
+.radioswitch input[type=radio] ~ label 	{padding: 1px; border:1px solid #211922;}
+.radioswitch input[type=radio]:checked + label 
+	{background:#211922; color: #fff;}
+
+#lockedmessage	{font-size: 1.2em; margin-top: 10px; padding: 5px; border: 1px solid #D8000C; background-color: #FFBABA; font-weight: bold;}

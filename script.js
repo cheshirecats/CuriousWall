@@ -81,6 +81,8 @@ if (typeof $IS_INDEX_PHP != 'undefined')
         clearPost();
         $('#post_title').hide();
         $('#text_container').show();
+        // change check box (is sticky) value here
+//        if (($('#isstickyhiddenfield').val()) == '0') { $('input#sticky').removeAttr('checked');} else { $('#sticky').attr('checked','checked');} 
       }
       updateText(msg);
       
@@ -125,6 +127,10 @@ if (typeof $IS_INDEX_PHP != 'undefined')
       
       $('#mid').show();
       document.title = $('#topic_title').text();
+ /*     if (($('#isstickyhiddenfield').val()) == '0') { $('input#ystick').removeAttr('checked');$('#nostick').attr('checked','checked');} else { $('#ystick').attr('checked','checked');$('input#nostick').removeAttr('checked');} 
+      if (($('#islockedyhiddenfield').val()) == '0') { $('input#ylock').removeAttr('checked');$('#nolock').attr('checked','checked');} else { $('#ylock').attr('checked','checked');$('input#nolock').removeAttr('checked');} */
+      $('input#ystick').removeAttr('checked');$('input#nostick').removeAttr('checked');$('input#ylock').removeAttr('checked');$('input#nolock').removeAttr('checked');
+
       updateCurrTopic($('#topic_title').attr('name'));
       
       var $numposts = $('#topic_title').attr('topic_replies');
@@ -168,9 +174,9 @@ if (typeof $IS_INDEX_PHP != 'undefined')
     var $this_reply = $("#text_container").find(".tcore:eq(0)").text();
     if ((!$this_reply) || ($this_reply == 1))
     {
-      window.location.hash = "topic/" + $this_topic;
+      window.location.hash = "!topic/" + $this_topic;
     } else {
-      window.location.hash = "topic/" + $this_topic + "/" + $this_reply;
+      window.location.hash = "!topic/" + $this_topic + "/" + $this_reply;
     }
   }
   
@@ -268,7 +274,7 @@ if (typeof $IS_INDEX_PHP != 'undefined')
     if (post_working) return false;
     post_working = true;
     $('#post_msg').html('Posting...');
-    $.post('post_db.php', {title:$('#post_title').val(), text:$('#post_text').val(), method:"new", topic:$current_topic}, function(msg)
+    $.post('post_db.php', {title:$('#post_title').val(), text:$('#post_text').val(), stick:$('.inputsticky:checked').val(), lock:$('.inputlocked:checked').val(), method:"new", topic:$current_topic}, function(msg) //, sticky:$('#sticky').val()
     {
       if(msg.substr(0, 7) == 'SUCCESS')
       {
