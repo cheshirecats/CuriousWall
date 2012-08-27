@@ -1,8 +1,6 @@
 <?php
-
-
-
-  require_once 'header.php';
+if ($_GET['_escaped_fragment_']){require_once 'noscript.php';die;}
+else {require_once 'header.php';}
 //die();
 ?>
 <div id="left_container">
