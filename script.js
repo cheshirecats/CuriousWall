@@ -5,6 +5,7 @@ function hover_a() {
   $(this).addClass('current');
   $(this).find('i').addClass('current');
 }
+
 function hover_b() {
   $(this).removeClass('current');
   $(this).find('i').removeClass('current');
@@ -23,6 +24,8 @@ document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
 function isINT(input){
   return parseInt(input)==input;
 }
+
+
 
 //======================================================================== index.php
 if (typeof $IS_INDEX_PHP != 'undefined')
@@ -113,7 +116,7 @@ if (typeof $IS_INDEX_PHP != 'undefined')
       }
     });
   }  
-  
+
   $(window).resize(function() {
   }).trigger("resize");
   
@@ -146,6 +149,25 @@ if (typeof $IS_INDEX_PHP != 'undefined')
     $("#text_container .tup").hover(hover_a, hover_b);
     $("#text_container .tdown").mousedown(function(){replyShift(+1); return false});
     $("#text_container .tdown").hover(hover_a, hover_b);
+    var $this_topic = $("#topic_title").attr('name');
+//    var $this_reply = $("#text_container").find(".tcore:eq(0)").text();
+    $(".topicdelete").mousedown(function(){
+	var reallydelete = confirm('Are you sure you want to delete that topic? If you do, then you will not be able to recover the topic, and all of the accompanying posts will be deleted too.');
+	if (reallydelete) {
+                $.post('delete.php', {method:'post', id:$this_topic,postortopic:'topic'}, function(msg){alert(msg);refresh();});//, function(msg)
+//		refresh();
+		}
+	});
+    $(".postdelete").mousedown(function(){
+//        alert($(this).attr('title'));
+	var reallydelete = confirm('Are you sure you want to delete that post? If you do, then you will not be able to recover the post.');
+	var clickedreply = $(this).attr('id');
+	if (reallydelete) {
+                $.post('delete.php', {method:'post', id:clickedreply, postortopic:'post', parenttopicid:$this_topic}, function(msg){alert(msg);});//, function(msg)
+		goTopic($this_topic,(clickedreply-5)); //scrolls the person to the middle of where the post was
+		}
+	});/**/
+
   }
   function updateNav(msg) {
     $('#left').show();
@@ -210,6 +232,11 @@ if (typeof $IS_INDEX_PHP != 'undefined')
       scroll(0);
       updateText(msg);
     });        
+  }
+
+  function delete() {
+  var reallydelete = confirm('Are you sure you want to delete that post/topic? If you do, then you will not be able to recover the post, and if you delete a topic, all of the accompanying posts will disappear.');
+
   }
   
   function topicShift($dir) {
