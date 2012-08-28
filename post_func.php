@@ -32,7 +32,7 @@ function post_get($db, $xtopic, $xbegin)
     
     echo '<div id="topic_title" name='.$xtopic.' topic_replies='.$topic['topic_replies']
       .' begin='.($begin+1).' end='.($end+1).' limit='.$limit.'>';displaytopiclocked($topic['topic_title'],$topic['locked']); echo'</div>';
-    echo '<div id="topic_text">' . "<span class='username' style='font-weight: bold;'>"; theusername($topic['user_name'],$topic['permissions']); echo ":</span> " . $topic['topic_text'].'</div>';
+    echo '<div id="topic_text">' . "<span class='username' style='font-weight: bold;'>"; theusername($topic['user_name'],$topic['permissions']); echo ":</span> " . $topic['topic_text'].'<div class="postbuttons">'; if ((isset($_SESSION['permissions']) && ($_SESSION['permissions'] == 1))) { echo'<div class="delete topicdelete hover" title="delete">⨯</div>';}echo'</div></div>';
     echo "<!-- this is just so the radio buttons can change, it isn't actually inputed -->";
     echo "<input type='hidden' name='issticky' id='isstickyhiddenfield' value='" . $topic['sticky'] . "'>";
     echo "<input type='hidden' name='islocked' id='islockedyhiddenfield' value='" . $topic['locked'] . "'>";
@@ -50,7 +50,7 @@ function post_get($db, $xtopic, $xbegin)
         echo '<span class="tcore tdown hover">▼</span>';
       }
       echo "<span class='username' style='font-weight: bold;'>"; theusername($row['user_name'],$row['permissions']); echo ":</span> ";
-      echo $row['post_text'].'</div>';
+      echo $row['post_text'].'<div class="postbuttons">';if ((isset($_SESSION['permissions']) && ($_SESSION['permissions'] == 1))) { echo'<div id="'.$row['post_id'].'" class="delete postdelete hover" title="delete">⨯</div>';}echo'</div></div>';
       $i++;
     }
     if ($isitlockeddisplaymessage == true) {
