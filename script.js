@@ -234,10 +234,10 @@ if (typeof $IS_INDEX_PHP != 'undefined')
     });        
   }
 
-  function delete() {
+ /* function delete() {
   var reallydelete = confirm('Are you sure you want to delete that post/topic? If you do, then you will not be able to recover the post, and if you delete a topic, all of the accompanying posts will disappear.');
 
-  }
+  }*/
   
   function topicShift($dir) {
     var $begin = 0;

@@ -1,5 +1,5 @@
 <?php
-if ($_GET['_escaped_fragment_']){require_once 'noscript.php';die;}
+if ((isset($_GET['_escaped_fragment_'])) && ($_GET['_escaped_fragment_'])){require_once 'noscript.php';die;}
 else {require_once 'header.php';}
 //die();
 ?>
