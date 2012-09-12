@@ -10,8 +10,8 @@ $db_name    = 'test';
 $db = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass
       , array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
 );
-
-mysql_select_db("test") or die(mysql_error());
+$link = mysql_connect($db_host, $db_user, $db_pass);
+mysql_select_db("test", $link) or die(mysql_error());
 
 // display diamond next to admins/mods name, and output the username
 
