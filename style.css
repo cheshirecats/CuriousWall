@@ -67,3 +67,7 @@ a:hover, .current                       { color: #e31922; text-shadow: 0 0 1px r
 	{background:#211922; color: #fff;}
 
 #lockedmessage	{font-size: 1.2em; margin-top: 10px; padding: 5px; border: 1px solid #D8000C; background-color: #FFBABA; font-weight: bold;}
+
+.delete:hover {color: #f00;}
+.delete {display: inline; font-size: 1.5em; line-height: 100%; padding: 0;}
+.postbuttons {display: inline; padding-left: 10px;}
