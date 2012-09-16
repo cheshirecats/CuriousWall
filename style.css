@@ -60,11 +60,12 @@ a:hover, .current                       { color: #e31922; text-shadow: 0 0 1px r
 .topic:hover .stuck	{ display: none; }
 .MathJax_SVG, .MathJax_SVG_Display	{ display: inline !important; text-align: left !important;}
 
-.radioswitch 	{display: inline;}
-.radioswitch input[type=radio] 	{display:none;} /**/
-.radioswitch input[type=radio] ~ label 	{padding: 1px; border:1px solid #211922;}
+.radioswitch 				{display: inline;}
+.radioswitch input[type=radio] 		{display:none;} /**/
+.radioswitch label 			{padding: 1px; border:1px solid #211922; border-right: none;}
 .radioswitch input[type=radio]:checked + label 
-	{background:#211922; color: #fff;}
+					{background:#211922; color: #fff;}
+.radioswitch label:last-child 		{border-right: 1px solid #211922;}
 
 #lockedmessage	{font-size: 1.2em; margin-top: 10px; padding: 5px; border: 1px solid #D8000C; background-color: #FFBABA; font-weight: bold;}
 
