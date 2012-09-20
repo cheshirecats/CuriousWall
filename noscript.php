@@ -16,7 +16,7 @@
 
   $txt=$_GET['_escaped_fragment_'];
 
-  $re1='(topic)';	# Word 1
+  $re1='(topic)';  # Word 1
   $re2='(\\/)';	# Any Single Character 1
   $re3='(\\d+)';	# Integer Number 1
   $re4='(\\/)';	# Any Single Character 2
@@ -52,7 +52,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>A Simple Forum</title>
+ <title><?php get_title($db, $getopic, $getpagination); ?></title>
   <link rel="stylesheet" type="text/css" href="style.css" />
   <link rel="stylesheet" type="text/css" href="font-awesome.css" />
 </head>

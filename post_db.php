@@ -40,7 +40,7 @@ else if (($_POST['method'] == 'new') && is_numeric($_POST['topic']))
 /*  if (($_POST['stick'] == 'ystick')&&($_POST['topic'] < 0)){if ((!isset($_SESSION['permissions']) || ($_SESSION['permissions'] == 0))) {die('You need to be a moderator to make a sticky topic!');} }//&& ((!isset($_SESSION['permissions']) || ($_SESSION['permissions'] == 0))) { }//die('You need to be a moderator to make a sticky topic!');}
   if (($_POST['lock'] == 'ylock')&&($_POST['topic'] < 0)){if ((!isset($_SESSION['permissions']) || ($_SESSION['permissions'] == 0))) {die('You need to be a moderator to lock topics!');} }*/
 
-  if ($_POST['stick'] || $_POST['lock']) {
+  if (isset($_POST['stick']) || isset($_POST['lock'])) {
      if  ((!isset($_SESSION['permissions']) || ($_SESSION['permissions'] == 0))) {die('You need to be a moderator to play with sticky or locked topics!');}
      else {}
   }

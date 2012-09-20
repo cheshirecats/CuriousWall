@@ -1,4 +1,24 @@
 <?php
+
+/**
+ * Prints out the title of the supplied topic
+ * 
+ * @param type $db DB Connection to use
+ * @param type $xtopic The topic to get the title of 
+ * @param type $xbegin 
+ */
+function get_title($db, $xtopic, $xbegin){
+  if (is_numeric($xtopic) && (is_numeric($xbegin))) {
+    $query = $db->prepare("SELECT topic_title FROM topics WHERE topic_id = ?");
+    $query->execute(array($xtopic));
+    if ($query->rowCount() < 1) {
+     die(); 
+    }
+    $topic = $query->fetch(PDO::FETCH_ASSOC);
+    echo $topic['topic_title'];
+  }
+}
+
 function post_get($db, $xtopic, $xbegin)
 {
   if (is_numeric($xtopic) && (is_numeric($xbegin)))
@@ -50,7 +70,7 @@ function post_get($db, $xtopic, $xbegin)
         echo '<span class="tcore tdown hover">▼</span>';
       }
       echo "<span class='username' style='font-weight: bold;'>"; theusername($row['user_name'],$row['permissions']); echo ":</span> ";
-      echo $row['post_text'].'<div class="postbuttons">';if ((isset($_SESSION['permissions']) && ($_SESSION['permissions'] == 1))) { echo'<div id="'.$row['post_id'].'" class="delete postdelete hover" title="delete">⨯</div>';}echo'</div></div>';
+      echo $row['post_text'].'<div class="postbuttons">';if ((isset($_SESSION['permissions']) && ($_SESSION['permissions'] == 1))) { echo'<div id="'. $row['post_id'] . '-' . ($i+1) .'" class="delete postdelete hover" title="delete">⨯</div>';}echo'</div></div>';
       $i++;
     }
     if ($isitlockeddisplaymessage == true) {
@@ -78,14 +98,14 @@ function post_get($db, $xtopic, $xbegin)
     {
       if ($i == $begin) $first_topic = $row['topic_id'];
       echo '<div class="topic'.(($i == $end)?' last':'').'" name="'.$row['topic_id'].'">'  
-      .'<span class="tcore trep"'.(($row['topic_replies']<=0)?' style="display:none"':'').'>'.($row['topic_replies']).'</span>' . '<span class="stuck">' . ((($row['sticky'])==1)?'(Sticky)':'') . "</span>";
+      .'<span class="tcore trep"'.(($row['topic_replies']<=0)?' style="display:none"':'').'>'.($row['topic_replies']).'</span>' . '<span class="stuck">' . /*((($row['sticky'])==1)?'<i class="icon-pushpin"></i>':'') .*/ "</span>";
       if (($i == $begin) && ($i != 0)) {
         echo '<span class="tcore tup hover">▲</span>';
       }
       if (($i == $end) && ($cnt == $limit)) {
         echo '<span class="tcore tdown hover">▼</span>';
       }
-      echo '<p>';displaytopiclocked($row['topic_title'],$row['locked']);echo '</p></div>';
+      echo '<p>';displaytopiclocked($row['topic_title'],$row['locked']);echo ((($row['sticky'])==1)?' <i class="icon-pushpin"></i>':'').'</p></div>';
       $i++;
     }
     return $first_topic;

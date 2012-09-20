@@ -24,7 +24,7 @@ elseif ($_POST['postortopic'] == 'post') {
   if (isset($_SESSION['permissions']) && ($_SESSION['permissions'] == '1')) {
      mysql_query("DELETE FROM posts WHERE post_id=".$_POST['id']) or die( mysql_error());
 	mysql_query("UPDATE topics SET topic_replies = (topic_replies-1) WHERE topic_id = ".$_POST['parenttopicid']) or die( mysql_error());
-	die("success, the post was deleted!");
+	die("success");
   }
   
   else {
