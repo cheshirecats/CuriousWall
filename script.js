@@ -155,16 +155,20 @@ if (typeof $IS_INDEX_PHP != 'undefined')
 	var reallydelete = confirm('Are you sure you want to delete that topic? If you do, then you will not be able to recover the topic, and all of the accompanying posts will be deleted too.');
 	if (reallydelete) {
                 $.post('delete.php', {method:'post', id:$this_topic,postortopic:'topic'}, function(msg){alert(msg);refresh();});//, function(msg)
-//		refresh();
+		refresh();
 		}
 	});
     $(".postdelete").mousedown(function(){
 //        alert($(this).attr('title'));
 	var reallydelete = confirm('Are you sure you want to delete that post? If you do, then you will not be able to recover the post.');
-	var clickedreply = $(this).attr('id');
+	var postid = $(this).attr('id');
+	var splitstuff = $(this).attr('id').split('-');
+	var clickedreply = splitstuff[1]; 
+	var deleteid = splitstuff[0]
 	if (reallydelete) {
-                $.post('delete.php', {method:'post', id:clickedreply, postortopic:'post', parenttopicid:$this_topic}, function(msg){alert(msg);});//, function(msg)
-		goTopic($this_topic,(clickedreply-5)); //scrolls the person to the middle of where the post was
+                $.post('delete.php', {method:'post', id:deleteid, postortopic:'post', parenttopicid:$this_topic}, function(msg){
+                             if (msg == 'success') {/*goTopic($this_topic,(clickedreply-5));*/$('#'+postid+'.postdelete').parent().parent().fadeOut();} else {alert(msg);}});//, function(msg)
+//		goTopic($this_topic,(clickedreply-5)); //scrolls the person to the middle of where the post was
 		}
 	});/**/
 
