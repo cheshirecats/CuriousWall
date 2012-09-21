@@ -1,6 +1,7 @@
 <?php
 // Report all PHP errors (see changelog)
 error_reporting(E_ALL);
+ini_set('display_errors', 'On');
 
 session_name('cwHello'); session_set_cookie_params(10*365*24*60*60); session_start();
 
@@ -19,9 +20,9 @@ mysql_select_db("test") or die(mysql_error());
 
 // display diamond next to admins/mods name, and output the username
 
-function theusername($name,$permissions,$bio) {
-if ($permissions == 1) {echo $name . "♦".(($bio)?"<div class='bio'>".$bio."</div>":'');}
-else echo $name . (($bio)?"<div class='bio'>".$bio."</div>":'');
+function theusername($name,$permissions) {
+if ($permissions == 1) {echo $name . "♦".((isset($bio))?"<div class='bio'>".$bio."</div>":'');}
+else echo $name . ((isset($bio))?"<div class='bio'>".$bio."</div>":'');
 }
 
 
