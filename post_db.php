@@ -60,7 +60,7 @@ else if (($_POST['method'] == 'new') && is_numeric($_POST['topic']))
          $_POST['topic'] = $db->lastInsertId();
     }
     elseif (isset($_POST['stick']) && !isset($_POST['lock'])) {
-        $query = $db->prepare("INSERT INTO topics(topic_title,topic_text,topic_date,topic_by,topic_score,sticky) VALUES(?,?,NOW(),?,UNIX_TIMESTAMP((NOW())),?)");
+        $query = $db->prepare("INSERT INTO topics(topic_title,topic_text,topic_date,topic_by,topic_score,sticky,locked) VALUES(?,?,NOW(),?,UNIX_TIMESTAMP((NOW())),?,0)");
         $query->execute(array($_POST['title'], $_POST['text'], $_SESSION['user_id'],$_POST['stick']));
          if($query->rowCount() < 1)
          {
@@ -69,7 +69,7 @@ else if (($_POST['method'] == 'new') && is_numeric($_POST['topic']))
          $_POST['topic'] = $db->lastInsertId();
     }
     elseif (!isset($_POST['stick']) && isset($_POST['lock'])) {
-        $query = $db->prepare("INSERT INTO topics(topic_title,topic_text,topic_date,topic_by,topic_score,locked) VALUES(?,?,NOW(),?,UNIX_TIMESTAMP((NOW())),?)");
+        $query = $db->prepare("INSERT INTO topics(topic_title,topic_text,topic_date,topic_by,topic_score,sticky,locked) VALUES(?,?,NOW(),?,UNIX_TIMESTAMP((NOW())),0,?)");
         $query->execute(array($_POST['title'], $_POST['text'], $_SESSION['user_id'],$_POST['lock']));
          if($query->rowCount() < 1)
          {
@@ -78,7 +78,7 @@ else if (($_POST['method'] == 'new') && is_numeric($_POST['topic']))
          $_POST['topic'] = $db->lastInsertId();
     }
     else {
-        $query = $db->prepare("INSERT INTO topics(topic_title,topic_text,topic_date,topic_by,topic_score,locked) VALUES(?,?,NOW(),?,UNIX_TIMESTAMP((NOW())))");
+        $query = $db->prepare("INSERT INTO topics(topic_title,topic_text,topic_date,topic_by,topic_score,sticky,locked) VALUES(?,?,NOW(),?,UNIX_TIMESTAMP((NOW())),0,0)");
         $query->execute(array($_POST['title'], $_POST['text'], $_SESSION['user_id']));
          if($query->rowCount() < 1)
          {
