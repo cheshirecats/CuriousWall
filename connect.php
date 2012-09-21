@@ -1,29 +1,39 @@
 <?php
+// Report all PHP errors (see changelog)
 error_reporting(E_ALL);
+
 session_name('cwHello'); session_set_cookie_params(10*365*24*60*60); session_start();
 
 $db_host    = 'localhost';
-$db_user    = 'test';
-$db_pass    = 'test';
+$db_user    = 'christofian';
+$db_pass    = 'password';
 $db_name    = 'test';
 
 $db = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass
       , array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
 );
-$link = mysql_connect($db_host, $db_user, $db_pass);
-mysql_select_db("test", $link) or die(mysql_error());
+
+mysql_select_db("test") or die(mysql_error());
+
+// I'm defining some functions here because it's easy that way and every file uses connect.php so every file has access to them.
 
 // display diamond next to admins/mods name, and output the username
 
-function theusername($name,$permissions) {
-if ($permissions == 1) echo $name . "♦";
-else echo $name;
+function theusername($name,$permissions,$bio) {
+if ($permissions == 1) {echo $name . "♦".(($bio)?"<div class='bio'>".$bio."</div>":'');}
+else echo $name . (($bio)?"<div class='bio'>".$bio."</div>":'');
 }
 
 
 // display if a topic is locked in the topics title
 function displaytopiclocked($topicname,$islocked) {
-if ($islocked == 1) echo $topicname . " [locked]";
+  if ($islocked == 1) echo $topicname . ' <i class="icon-lock"></i>';
 else echo $topicname;
 }
+
+function displaymenu($current) {
+if ($current == 'topics') {echo "<div id='navbar'><div id='topicsnav currentnav'>Topics</div><div id='usernav'>Users</div></div>";}
+else {echo "<div id='navbar'><div id='topicsnav'>Topics</div><div id='usernav currentnav'>Users</div></div>";}
+}
+
 ?>
