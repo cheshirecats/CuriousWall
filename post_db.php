@@ -48,8 +48,8 @@ else if (($_POST['method'] == 'new') && is_numeric($_POST['topic']))
   $_POST['text'] = nl2br(htmlspecialchars($_POST['text']));
   $_POST['text'] = str_replace("  ", "&nbsp;&nbsp;", $_POST['text']);
 
-  if ($_POST['stick'] == 'ystick') {$_POST['stick'] = '1';} else {$_POST['stick'] = '0';}
-  if ($_POST['lock'] == 'ylock') {$_POST['lock'] = '1';} else {$_POST['lock'] = '0';}
+  if (isset($_POST['stick']) && $_POST['stick'] == 'ystick') {$_POST['stick'] = '1';} else {$_POST['stick'] = '0';}
+  if (isset($_POST['lock']) && $_POST['lock'] == 'ylock') {$_POST['lock'] = '1';} else {$_POST['lock'] = '0';}
 
   if ($_POST['topic'] < 0)
   {
