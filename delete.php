@@ -5,7 +5,7 @@ require_once 'connect.php';
 $_POST['parent-topic-id'] = $_GET['parent-topic-id'];
 $_POST['content-type'] = $_GET['content-type'];/**/
 
-if (!$_POST['parenttopicid'] && $_POST['postortopic'] == 'topic') {$_POST['parenttopicid'] = $_POST['id'];}
+if (!isset($_POST['parenttopicid']) && $_POST['postortopic'] == 'topic') {$_POST['parenttopicid'] = $_POST['id'];}
 
 if (!is_numeric($_POST['id'])) die('Can not understand post data :(');
 
