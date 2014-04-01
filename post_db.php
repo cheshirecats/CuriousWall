@@ -99,14 +99,19 @@ else if (($_POST['method'] == 'new') && is_numeric($_POST['topic']))
 	    $query->execute(array($_POST['lock'],$_POST['topic']));
         }
     }
-    // can't post in locked topics
-    $query = mysql_query("SELECT locked FROM topics WHERE topic_id = " . $_POST['topic'] . " LIMIT 1") or die(mysql_error()); 
-    $row = mysql_fetch_assoc($query);
-    if ($row['locked'] == 1) {
-        if ((!isset($_SESSION['permissions']) || ($_SESSION['permissions'] == 0))) die("You can not post in a locked topic unless you are a moderator!");
-        else {}
-    }else{}
+    
+    // can't post in locked topics    
+    $query = $db->prepare('SELECT locked FROM topics WHERE topic_id = ?');
+    $query->execute(array($_POST['topic']));
+    $row = $query->fetch(PDO::FETCH_ASSOC);
+    if ($row && $row['locked'] == 1)
+    {
+        if ((!isset($_SESSION['permissions']) || ($_SESSION['permissions'] == 0))) die("You can not post in a locked topic unless you are a moderator!");	    
+    }
 
+    
+    //
+    
     $query = $db->prepare("INSERT INTO posts(post_text,post_date,post_by,post_topic) VALUES(?,NOW(),?,?)");
     $query->execute(array($_POST['text'], $_SESSION['user_id'], $_POST['topic']));
     if($query->rowCount() < 1)
