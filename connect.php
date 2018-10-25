@@ -14,7 +14,6 @@ $db = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass
       , array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
 );
 
-mysql_select_db("test") or die(mysql_error());
 
 // I'm defining some functions here because it's easy that way and every file uses connect.php so every file has access to them.
 

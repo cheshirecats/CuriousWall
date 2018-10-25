@@ -11,8 +11,10 @@ if (!is_numeric($_POST['id'])) die('Can not understand post data :(');
 
 if ($_POST['postortopic'] == 'topic') {
   if (isset($_SESSION['permissions']) && ($_SESSION['permissions'] == '1')) {
-     mysql_query("DELETE FROM topics WHERE topic_id=".$_POST['id']) or die( mysql_error());
-	die("success, the topic was deleted!");
+     $query = $db->prepare('DELETE FROM topics WHERE topic_id = ?');
+     $query->execute(array($_POST['id'])) or die ($query->errorInfo()[2]);
+ 
+ 	die("success, the topic was deleted!");
   }
   
   else {
@@ -22,9 +24,14 @@ if ($_POST['postortopic'] == 'topic') {
 
 elseif ($_POST['postortopic'] == 'post') {
   if (isset($_SESSION['permissions']) && ($_SESSION['permissions'] == '1')) {
-     mysql_query("DELETE FROM posts WHERE post_id=".$_POST['id']) or die( mysql_error());
-	mysql_query("UPDATE topics SET topic_replies = (topic_replies-1) WHERE topic_id = ".$_POST['parenttopicid']) or die( mysql_error());
-	die("success");
+     
+     $query = $db->prepare('DELETE FROM posts WHERE post_id = ?');
+     $query->execute(array($_POST['id'])) or die ($query->errorInfo()[2]);
+     
+     $query = $db->prepare('UPDATE topics SET topic_replies = (topic_replies-1) WHERE topic_id = ?');
+     $query->execute(array($_POST['parenttopicid'])) or die ($query->errorInfo()[2]);
+     
+     die("success");
   }
   
   else {
@@ -32,7 +39,7 @@ elseif ($_POST['postortopic'] == 'post') {
   }
 }
 
-else {die("Sorry, but we do not have the nessessary post data to delete a post");}
+else {die("Sorry, but we do not have the necessary post data to delete a post");}
 
 //echo "everything works";
 
